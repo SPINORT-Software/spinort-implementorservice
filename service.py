@@ -16,16 +16,14 @@ SERVICE_BASE_DIR = os.path.dirname(__file__)
 
 
 class Service:
-    def __init__(self, configuration, confluent_config):
+    def __init__(self, configuration):
         self.local_storage = localStoragePy(configuration.get_local_storage_workspace_name(),
                                             configuration.get_local_storage_workspace_backend())
         self.kafka_alert = KafkaAlertApi(configuration, self.local_storage)
         self.configuration = configuration
-        self.confluent_config = confluent_config
 
     def start_ipc_consumer_thread(self):
         consumer = KafkaConsumer(
-            self.confluent_config,
             self.configuration,
             self.configuration.get_kafka_ipc_topic(),
             callback_function=self.kafka_alert.accept_record

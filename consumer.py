@@ -37,7 +37,6 @@ class Consumer(threading.Thread):
             self,
             kafka_consumer_configuration: KafkaConsumerConfiguration,
             topic: str,
-            error_handler: KafkaErrorHandler,
             callback_function=lambda event: print(event),
             **kwargs
     ):

@@ -15,12 +15,6 @@ environment = os.getenv("ENVIRONMENT")
 logger.info(f"Setting up Inertial Sensor service for environment [{environment}]")
 configuration = get_config(environment)
 
-confluent_properties_file = open("kafka_client_properties.ini")
-confluent_config_parser = ConfigParser()
-confluent_config_parser.read_file(confluent_properties_file)
-confluent_config = dict(confluent_config_parser['default'])
-
 if __name__ == '__main__':
-    service = Service(configuration, confluent_config)
+    service = Service(configuration)
     service.start_ipc_consumer_thread()  # Kafka IPC topic consumer thread
-
