@@ -2,7 +2,6 @@ import os
 from dotenv import load_dotenv
 from configuration import get_config
 import logging
-from configparser import ConfigParser
 from service import Service
 
 load_dotenv()

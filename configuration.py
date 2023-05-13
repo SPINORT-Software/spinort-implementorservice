@@ -2,6 +2,9 @@ from abc import ABCMeta
 import os
 import random
 
+from dotenv import load_dotenv
+load_dotenv()
+
 
 _PRODUCTION_ENVIRONMENT = "production"
 _STAGING_ENVIRONMENT = "staging"

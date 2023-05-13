@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import logging
 from localStoragePy import localStoragePy
 
-from consumer import KafkaConsumer
+from consumer import Consumer
 from kafka_alert import KafkaAlertApi
 
 
@@ -23,10 +23,10 @@ class Service:
         self.configuration = configuration
 
     def start_ipc_consumer_thread(self):
-        consumer = KafkaConsumer(
-            self.configuration,
+        consumer = Consumer(
+            self.configuration.get_kafka_consumer_configuration(),
             self.configuration.get_kafka_ipc_topic(),
-            callback_function=self.kafka_alert.accept_record
+            self.kafka_alert.accept_record
         )
         consumer.start()
 
