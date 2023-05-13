@@ -1,5 +1,6 @@
 from .kafka_assembler import KafkaAssembler
 from commands import Commands
+from gpio_apply import GpioApply
 
 import os, sys
 import logging
@@ -17,6 +18,7 @@ class IpcCommandAssembler(KafkaAssembler):
         self._step_id_key = configuration.get_environ_name_calibration_step_id()
         self._data_send_allow_key = configuration.get_environ_name_data_send_allow()
         self._local_storage = local_storage
+        self._gpio_app = GpioApply()
 
     def assemble(self, kafka_consumer_record):
         """
@@ -25,7 +27,7 @@ class IpcCommandAssembler(KafkaAssembler):
         :param kafka_consumer_record:
         :return:
         """
-        original = kafka_consumer_record.value().decode("utf-8")
+        original = kafka_consumer_record.value.decode("utf-8")
         original_event = json.loads(original)
 
         try:
