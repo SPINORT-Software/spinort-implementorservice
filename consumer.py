@@ -12,8 +12,6 @@ import threading
 from abc import ABCMeta, abstractmethod
 
 from kafka import KafkaConsumer
-from infra.assemblers.error_handler import KafkaErrorHandler
-
 logger = logging.getLogger(__name__)
 _KAFKA_MAX_INT_VALUE = 2147483647
 
@@ -48,7 +46,6 @@ class Consumer(threading.Thread):
         self._topic = topic
         self._group_id = kafka_consumer_configuration.get_consumer_group_id()
         self._consumer_timeout_ms = kafka_consumer_configuration.get_consumer_timeout_ms()
-        self._error_handler = error_handler
         self._callback_function = callback_function
         if kwargs:
             self._kwargs = kwargs
