@@ -15,9 +15,11 @@ p.start(0)
 try:
     while 1:
         for dc in range(0, 101, 5):
+            print(f"Setting the GPIO brightness to {dc}")
             p.ChangeDutyCycle(dc)
             time.sleep(0.1)
         for dc in range(100, -1, -5):
+            print(f"Setting the GPIO brightness to {dc}")
             p.ChangeDutyCycle(dc)
             time.sleep(0.1)
 except KeyboardInterrupt:
