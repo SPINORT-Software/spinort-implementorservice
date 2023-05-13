@@ -2,7 +2,6 @@ from abc import ABCMeta
 import os
 import random
 
-from producer import KafkaProducerConfiguration
 
 _PRODUCTION_ENVIRONMENT = "production"
 _STAGING_ENVIRONMENT = "staging"
@@ -30,9 +29,6 @@ class AlertConfiguration(metaclass=ABCMeta):
 
     def get_local_storage_workspace_backend(self):
         return "json"
-
-    def get_kafka_producer_configuration(self):
-        return _KafkaProducerConfiguration(self._environment)
 
     def get_kafka_consumer_configuration(self):
         return _KafkaConsumerConfiguration(self._environment)
@@ -91,17 +87,6 @@ def _get_kafka_bootstrap_servers(environment):
         return _validated_get_from_env(f"KAFKA_BOOTSTRAP_SERVERS")
     except ValueError:
         return None
-
-
-class _KafkaProducerConfiguration(KafkaProducerConfiguration):
-    def __init__(self, environment):
-        self._environment = environment
-
-    def get_bootstrap_servers(self):
-        return _get_kafka_bootstrap_servers(self._environment)
-
-    def get_flush_timeout(self):
-        return float(os.getenv("KAFKA_PRODUCER_FLUSH_TIMEOUT_MS", "10000"))
 
 
 class _KafkaConsumerConfiguration:
