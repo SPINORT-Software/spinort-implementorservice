@@ -9,7 +9,7 @@ p = GPIO.PWM(18, 1000)
 def apply_pwm(value):
     p.start(0)
     try:
-        for dc in range(0, value, 5):
+        for dc in range(0, value+1, 5):
             print(f"Setting the GPIO brightness to {dc}")
             p.ChangeDutyCycle(dc)
             time.sleep(2)
