@@ -5,6 +5,8 @@ GPIO.setmode(GPIO.BOARD)
 GPIO.setup(ledpin, GPIO.OUT)
 GPIO.setwarnings(False)
 
+import time
+
 
 class GpioApply:
     def __init__(self):
@@ -12,6 +14,6 @@ class GpioApply:
         self._pwm.start(0)
 
     def apply_pwm(self, value):
-        self._pwm.ChangeDutyCycle(value)
-
-
+        for dc in range(0, value, 5):
+            self._pwm.ChangeDutyCycle(dc)
+            time.sleep(2)
