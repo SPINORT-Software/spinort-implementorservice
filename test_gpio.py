@@ -14,7 +14,7 @@ p = GPIO.PWM(18, 1000)  # channel=18 frequency=1000Hz
 p.start(0)
 try:
     while 1:
-        for dc in range(0, 90, 5):
+        for dc in range(0, 101, 5):
             print(f"Setting the GPIO brightness to {dc}")
             p.ChangeDutyCycle(dc)
             time.sleep(1)
