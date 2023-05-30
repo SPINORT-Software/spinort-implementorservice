@@ -41,10 +41,6 @@ class Consumer(threading.Thread):
         threading.Thread.__init__(self, name=f"kafkaconsumer_[{topic}]")
         self._stop_event = threading.Event()
         self._boostrap_servers = kafka_consumer_configuration.get_bootstrap_servers()
-
-        print("broker")
-        print(kafka_consumer_configuration.get_bootstrap_servers())
-
         self._sasl_plain_username = kafka_consumer_configuration.get_sasl_plain_username()
         self._sasl_plain_password = kafka_consumer_configuration.get_sasl_plain_password()
         self._topic = topic

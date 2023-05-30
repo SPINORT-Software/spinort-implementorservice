@@ -1,6 +1,6 @@
 from .kafka_assembler import KafkaAssembler
 from commands import Commands
-# from gpio_apply import GpioApply
+from gpio_apply import GpioApply
 
 import os, sys
 import logging
