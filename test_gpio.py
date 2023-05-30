@@ -10,18 +10,14 @@ import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(18, GPIO.OUT)
 
-p = GPIO.PWM(18, 1000)  # channel=12 frequency=50Hz
+p = GPIO.PWM(18, 1000)  # channel=18 frequency=1000Hz
 p.start(0)
 try:
     while 1:
-        for dc in range(0, 101, 5):
+        for dc in range(0, 90, 5):
             print(f"Setting the GPIO brightness to {dc}")
             p.ChangeDutyCycle(dc)
-            time.sleep(0.1)
-        for dc in range(100, -1, -5):
-            print(f"Setting the GPIO brightness to {dc}")
-            p.ChangeDutyCycle(dc)
-            time.sleep(0.1)
+            time.sleep(0.01)
 except KeyboardInterrupt:
     pass
 p.stop()

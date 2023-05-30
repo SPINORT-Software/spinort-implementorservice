@@ -1,6 +1,6 @@
 from .kafka_assembler import KafkaAssembler
 from commands import Commands
-from gpio_apply import GpioApply
+# from gpio_apply import GpioApply
 
 import os, sys
 import logging
@@ -49,7 +49,7 @@ class IpcCommandAssembler(KafkaAssembler):
 
                 logger.info("Stimulation data is received from the engine.")
                 logger.info(original_event)
-                # self._gpio_app.apply_pwm(stimulation_energy)
+                self._gpio_app.apply_pwm(stimulation_energy)
             else:
                 logger.info(f"An unrecognized command is provided. Command = [{command}]")
 
