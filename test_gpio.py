@@ -17,7 +17,7 @@ try:
         for dc in range(0, 90, 5):
             print(f"Setting the GPIO brightness to {dc}")
             p.ChangeDutyCycle(dc)
-            time.sleep(0.01)
+            time.sleep(2)
 except KeyboardInterrupt:
     pass
 p.stop()
