@@ -14,6 +14,7 @@ class GpioApply:
         self._pwm.start(0)
 
     def apply_pwm(self, value):
-        for dc in range(0, value, 5):
+        for dc in range(0, value+1, 5):
+            print(f"Setting the GPIO brightness to {dc}")
             self._pwm.ChangeDutyCycle(dc)
             time.sleep(2)
