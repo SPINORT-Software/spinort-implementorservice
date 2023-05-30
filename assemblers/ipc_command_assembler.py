@@ -43,7 +43,7 @@ class IpcCommandAssembler(KafkaAssembler):
                 Receive stimulation data from SPINORT Engine.                
                 """
                 session_id_value = original_event.get("session")
-                stimulation_energy = float(original_event.get("energy"))
+                stimulation_energy = int(original_event.get("energy"))
                 stimulation_side = original_event.get("side")
 
                 logger.info("Stimulation data is received from the engine.")
