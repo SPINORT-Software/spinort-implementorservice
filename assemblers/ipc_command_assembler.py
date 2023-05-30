@@ -1,6 +1,6 @@
 from .kafka_assembler import KafkaAssembler
 from commands import Commands
-from gpio_apply import GpioApply
+from gpio_apply import apply_pwm
 
 import os, sys
 import logging
@@ -18,7 +18,6 @@ class IpcCommandAssembler(KafkaAssembler):
         self._step_id_key = configuration.get_environ_name_calibration_step_id()
         self._data_send_allow_key = configuration.get_environ_name_data_send_allow()
         self._local_storage = local_storage
-        self._gpio_app = GpioApply()
 
     def assemble(self, kafka_consumer_record):
         """
@@ -44,12 +43,12 @@ class IpcCommandAssembler(KafkaAssembler):
                 Receive stimulation data from SPINORT Engine.                
                 """
                 session_id_value = original_event.get("session")
-                stimulation_energy = int(original_event.get("energy"))
+                stimulation_energy = float(original_event.get("energy"))
                 stimulation_side = original_event.get("side")
 
                 logger.info("Stimulation data is received from the engine.")
                 logger.info(original_event)
-                self._gpio_app.apply_pwm(stimulation_energy)
+                apply_pwm(stimulation_energy)
             else:
                 logger.info(f"An unrecognized command is provided. Command = [{command}]")
 

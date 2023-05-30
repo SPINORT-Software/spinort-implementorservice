@@ -1,20 +1,21 @@
-import RPi.GPIO as GPIO  # import the RPi.GPIO library
-
-ledpin = 18
-GPIO.setmode(GPIO.BOARD)
-GPIO.setup(ledpin, GPIO.OUT)
-GPIO.setwarnings(False)
-
 import time
+import RPi.GPIO as GPIO
+
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(18, GPIO.OUT)
+p = GPIO.PWM(18, 1000)
 
 
-class GpioApply:
-    def __init__(self):
-        self._pwm = GPIO.PWM(ledpin, 1000)  # create the pwm instance with frequency 1000 Hz
-        self._pwm.start(0)
-
-    def apply_pwm(self, value):
-        for dc in range(0, value+1, 5):
+def apply_pwm(value):
+    p.start(0)
+    try:
+        for dc in range(0, value, 5):
             print(f"Setting the GPIO brightness to {dc}")
-            self._pwm.ChangeDutyCycle(dc)
+            p.ChangeDutyCycle(dc)
             time.sleep(2)
+    except KeyboardInterrupt:
+        pass
+
+
+p.stop()
+GPIO.cleanup()
