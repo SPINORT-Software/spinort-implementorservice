@@ -3,8 +3,8 @@ import RPi.GPIO as GPIO
 
 def apply_pwm(value):
     GPIO.setmode(GPIO.BOARD)
-    GPIO.setup(12, GPIO.OUT)
-    p = GPIO.PWM(12, 1000)
+    GPIO.setup(32, GPIO.OUT)
+    p = GPIO.PWM(32, 1000)
     p.start(0)
     try:
         for dc in range(0, value + 1, 5):
