@@ -2,6 +2,7 @@ import time
 import RPi.GPIO as GPIO
 
 def apply_pwm(value, side):
+    print(f"Received stimulation value of {value} to apply on side: {side}")
     GPIO.setmode(GPIO.BOARD)
     GPIO.setup(32, GPIO.OUT)
     p1 = GPIO.PWM(32, 1000) # left
