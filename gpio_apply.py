@@ -19,9 +19,11 @@ def apply_pwm(value, side):
                 p2.ChangeDutyCycle(dc)
             elif side == 'left':
                 p1.ChangeDutyCycle(dc)
-            else:
+            elif side == 'both':
                 p1.ChangeDutyCycle(dc)
                 p2.ChangeDutyCycle(dc)
+            else:
+                print("Could not apply the stimulation.")
             time.sleep(2)
     except KeyboardInterrupt:
         pass
