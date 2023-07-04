@@ -5,10 +5,10 @@ def apply_pwm(value, side):
     print(f"Received stimulation value of {value} to apply on side: {side}")
     GPIO.setmode(GPIO.BOARD)
     GPIO.setup(32, GPIO.OUT)
-    p1 = GPIO.PWM(32, 1000) # left
+    p1 = GPIO.PWM(32, 20) # left
 
     GPIO.setup(12, GPIO.OUT)
-    p2 = GPIO.PWM(12, 1000) # right
+    p2 = GPIO.PWM(12, 20) # right
 
     p1.start(0)
     p2.start(0)
