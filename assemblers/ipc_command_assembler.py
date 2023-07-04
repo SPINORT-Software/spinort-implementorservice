@@ -48,7 +48,7 @@ class IpcCommandAssembler(KafkaAssembler):
 
                 logger.info("Stimulation data is received from the engine.")
                 logger.info(original_event)
-                apply_pwm(stimulation_energy)
+                apply_pwm(stimulation_energy, stimulation_side)
             else:
                 logger.info(f"An unrecognized command is provided. Command = [{command}]")
 
