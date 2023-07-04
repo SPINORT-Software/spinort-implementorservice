@@ -25,6 +25,8 @@ def apply_pwm(value, side):
             time.sleep(2)
     except KeyboardInterrupt:
         pass
+
+    time.sleep(60)
     print(f"Stopping the PWM.")
     p1.stop()
     p2.stop()
