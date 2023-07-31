@@ -30,6 +30,7 @@ def apply_pwm(value, side):
     p2.start(0)
 
     duty_cycle_value = convert_to_duty_cycle(value)
+    print(f"Engine result value = {value} is converted to duty cycle value = {duty_cycle_value}")
 
     try:
         for dc in range(0, duty_cycle_value + 1, 5):
