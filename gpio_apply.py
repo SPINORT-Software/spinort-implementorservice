@@ -1,5 +1,6 @@
 import time
 import RPi.GPIO as GPIO
+import math
 
 
 def convert_to_duty_cycle(value):
@@ -29,7 +30,8 @@ def apply_pwm(value, side):
     p1.start(0)
     p2.start(0)
 
-    duty_cycle_value = convert_to_duty_cycle(value)
+    clean_value = math.floor(value)
+    duty_cycle_value = convert_to_duty_cycle(clean_value)
     print(f"Engine result value = {value} is converted to duty cycle value = {duty_cycle_value}")
 
     try:
