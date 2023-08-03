@@ -30,12 +30,12 @@ def apply_pwm(value, side):
     p1.start(0)
     p2.start(0)
 
-    clean_value = math.floor(value)
-    duty_cycle_value = convert_to_duty_cycle(clean_value)
-    print(f"Engine result value = {value} is converted to duty cycle value = {duty_cycle_value}")
+    duty_cycle_value = convert_to_duty_cycle(value)
+    clean_value = math.floor(duty_cycle_value)
+    print(f"Engine result value = {value} is converted to duty cycle value = {clean_value}")
 
     try:
-        for dc in range(0, duty_cycle_value + 1, 5):
+        for dc in range(0, clean_value + 1, 5):
             print(f"Setting the GPIO brightness to {dc}")
             if side == 'right':
                 p2.ChangeDutyCycle(dc)
