@@ -27,11 +27,11 @@ def apply_pwm(value, side):
     GPIO.setup(12, GPIO.OUT)
     p2 = GPIO.PWM(12, 20)  # right
 
-    GPIO.setup(18, GPIO.OUT)
-    p3 = GPIO.PWM(18, 20)  # common
+    GPIO.setup(33, GPIO.OUT)
+    p3 = GPIO.PWM(33, 20)  # common
 
-    GPIO.setup(22, GPIO.OUT)
-    p4 = GPIO.PWM(22, 20)  # common
+    GPIO.setup(35, GPIO.OUT)
+    p4 = GPIO.PWM(35, 20)  # common
 
     p1.start(0)
     p2.start(0)
