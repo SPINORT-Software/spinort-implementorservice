@@ -1,5 +1,7 @@
 import logging
 
+# testing 
+
 from kafka.consumer.fetcher import ConsumerRecord
 from exceptions.filter_out import FilterOutException
 
