@@ -33,19 +33,19 @@ class KafkaConsumerConfiguration(metaclass=ABCMeta):
 class Consumer(threading.Thread):
     def __init__(
             self,
-            kafka_consumer_configuration: KafkaConsumerConfiguration,
+            kafka_consumer_configuration,
             topic: str,
             callback_function=lambda event: print(event),
             **kwargs
     ):
         threading.Thread.__init__(self, name=f"kafkaconsumer_[{topic}]")
         self._stop_event = threading.Event()
-        self._boostrap_servers = kafka_consumer_configuration.get_bootstrap_servers()
-        self._sasl_plain_username = kafka_consumer_configuration.get_sasl_plain_username()
-        self._sasl_plain_password = kafka_consumer_configuration.get_sasl_plain_password()
+        self._boostrap_servers = kafka_consumer_configuration.get('bootstrap.servers')
+        self._sasl_plain_username = kafka_consumer_configuration.get('sasl.username')
+        self._sasl_plain_password = kafka_consumer_configuration.get('sasl.password')
         self._topic = topic
-        self._group_id = kafka_consumer_configuration.get_consumer_group_id()
-        self._consumer_timeout_ms = kafka_consumer_configuration.get_consumer_timeout_ms()
+        self._group_id = kafka_consumer_configuration.get('group.id')
+        self._consumer_timeout_ms = 10000
         self._callback_function = callback_function
         if kwargs:
             self._kwargs = kwargs
