@@ -18,7 +18,7 @@ def convert_to_duty_cycle(value):
         return (5 / value) * 100
 
 
-def apply_pwm(value, side):
+def apply_pwm(value, side, timer, session_id):
     print(f"Received stimulation value of {value} to apply on side: {side}")
     GPIO.setmode(GPIO.BOARD)
     GPIO.setup(32, GPIO.OUT)
@@ -63,12 +63,15 @@ def apply_pwm(value, side):
     except KeyboardInterrupt:
         pass
 
-    print("Pausing for 60 seconds before stopping the PWM.")
-    time.sleep(60)
-    print("Stopping the PWM.")
+    print("Stimulation will be applied for 1 minute. (PWM will stop after 1 minute)")
+    timer.start()
+    print("Stopping the PWM")
+    print(
+        f"Sending request to engine to create a new treatment cycle for the current session. [Session ID = {session_id}]"
+    )
+    timer.execute_callback(session_id=session_id)
     p1.stop()
     p2.stop()
     p3.stop()
     p4.stop()
     GPIO.cleanup()
-

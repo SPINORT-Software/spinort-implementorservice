@@ -7,6 +7,7 @@ class Commands(Enum):
     Command "name" received from the engine is always excepted to be in all lower-case letters.
     """
     implement_treatment_result = {"name": "implement_treatment_result", }
+    treatment_create_new_cycle    = {"name": "treatment_create_new_cycle"}
 
     def __init__(self, value):
         if "name" not in value:
