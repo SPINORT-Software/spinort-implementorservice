@@ -3,8 +3,8 @@ import os
 import random
 
 from dotenv import load_dotenv
-load_dotenv()
 
+load_dotenv()
 
 _PRODUCTION_ENVIRONMENT = "production"
 _STAGING_ENVIRONMENT = "staging"
@@ -47,6 +47,15 @@ class AlertConfiguration(metaclass=ABCMeta):
 
     def get_environ_name_data_send_allow(self):
         return f"SMARTBACK_ENV_ALLOW_DATA_SEND_{self._environment.upper()}"
+
+    def get_ipc_engine_alerts_topic(self):
+        return "ipc-engine-alerts-local"
+
+    def get_kafka_ipc_topic(self):
+        return "ipc-alerts-local"
+
+    def get_kafka_ipc_results_topic(self):
+        return "ipc-results-local"
 
 
 class _ProductionAlertConfiguration(AlertConfiguration):
